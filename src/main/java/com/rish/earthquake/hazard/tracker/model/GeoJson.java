@@ -9,7 +9,8 @@ import java.util.*;
 @Slf4j
 public class GeoJson {
 
-  UUID eventId = UUID.randomUUID();;
+  UUID eventId = UUID.randomUUID();
+  ;
 
   // Logarithmic measure of size of the earthquake at epicentre (source)
   @JsonProperty("mag")
@@ -112,5 +113,8 @@ public class GeoJson {
   // Type of seismic event
   @JsonProperty("type")
   String eventType;
+
+  @JsonProperty("products")
+  Products products;
 
 }
