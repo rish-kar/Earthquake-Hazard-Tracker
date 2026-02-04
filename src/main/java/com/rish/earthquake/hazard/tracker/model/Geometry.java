@@ -9,16 +9,18 @@ import java.util.*;
 @Slf4j
 public class Geometry {
 
-  // Geometry type, typically "Point"
+  // Geometry type for this feature (typically "Point")
+  // Keeping the JSON property as "type" for compatibility with GeoJSON
   @JsonProperty("type")
   String geometryType;
 
-  // Coordinates as [longitude, latitude, depth]
+  // Coordinates ordered as [longitude, latitude, depth].
+  // Depth may be null or zero depending on the feed; using a list preserves the original ordering
   @JsonProperty("coordinates")
-  List<Double> coordinates;
+  List<Double> coordinatesLonLatDepth;
 
-  // Optional id associated with the geometry
+  // Optional identifier for the geometry object returned by the feed
   @JsonProperty("id")
-  String geometryId;
+  String geometryIdentifier;
 
 }

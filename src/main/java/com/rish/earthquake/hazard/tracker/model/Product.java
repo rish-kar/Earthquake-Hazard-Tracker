@@ -11,34 +11,34 @@ public class Product {
 
   // Unique identifier for the product
   @JsonProperty("id")
-  String id;
+  String productId;
 
   @JsonProperty("type")
-  String type;
+  String productType;
 
   @JsonProperty("code")
-  String code;
+  String productCode;
 
   @JsonProperty("source")
-  String source;
+  String productSource;
 
   // Time when the product was last updated (epoch millis)
   @JsonProperty("updateTime")
-  long updateTime;
+  long productUpdatedTimeUtc;
 
   @JsonProperty("status")
-  String status;
+  String productStatus;
 
   // Arbitrary key/value properties
   @JsonProperty("properties")
-  Map<String, String> properties;
+  Map<String, String> productProperties;
 
   @JsonProperty("preferredWeight")
   int preferredWeight;
 
   // Map of content path -> content metadata
   @JsonProperty("contents")
-  Map<String, Content> contents;
+  Map<String, Content> contentMap;
 
 
   // Nested class modelling each content entry
@@ -49,7 +49,7 @@ public class Product {
 
     // epoch millis
     @JsonProperty("lastModified")
-    long lastModified;
+    long lastModifiedUtc;
 
     @JsonProperty("length")
     int length;
@@ -60,4 +60,3 @@ public class Product {
   }
 
 }
-
