@@ -1,10 +1,9 @@
 package com.rish.earthquake.hazard.tracker;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.*;
+import org.springframework.boot.autoconfigure.*;
 import org.springframework.context.annotation.*;
 import org.springframework.http.*;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.reactive.function.client.*;
 
 @SpringBootApplication
