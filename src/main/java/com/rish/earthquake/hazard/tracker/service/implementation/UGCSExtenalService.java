@@ -8,7 +8,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.reactive.function.client.*;
 import reactor.core.publisher.*;
-import tools.jackson.databind.*;
 
 @Slf4j
 @Service
@@ -21,36 +20,29 @@ public class UGCSExtenalService implements ExternalServiceCaller {
 
 
   @Override
-  public Mono<String> getGeoJsonSummary() {
+  public Mono<String> getSummary(String urlSuffix) {
 
-    Mono<String> response = webClient.get().exchangeToMono(clientResponse -> {
-      if (clientResponse.statusCode().equals(HttpStatus.OK)) {
-        return clientResponse.bodyToMono(String.class);
-      } else if (clientResponse.statusCode().is4xxClientError()) {
-        return Mono.just("Error response");
-      } else {
-        return clientResponse.createException()
-            .flatMap(Mono::error);
-      }
-    });
-
-    return response;
+    return webClient.get().uri(urlSuffix)
+        .exchangeToMono(clientResponse -> {
+          if (clientResponse.statusCode().is2xxSuccessful()) {
+            return clientResponse.bodyToMono(String.class);
+          } else {
+            // propagate error to caller rather than returning a plain string
+            return clientResponse.createException().flatMap(Mono::error);
+          }
+        });
   }
 
   @Override
-  public Mono<String> getGeoJsonData() {
+  public Mono<String> getDetails(String urlSuffix) {
 
-    Mono<String> response = webClient.get().exchangeToMono(clientResponse -> {
-      if (clientResponse.statusCode().equals(HttpStatus.OK)) {
-        return clientResponse.bodyToMono(String.class);
-      } else if (clientResponse.statusCode().is4xxClientError()) {
-        return Mono.just("Error response");
-      } else {
-        return clientResponse.createException()
-            .flatMap(Mono::error);
-      }
-    });
-
-    return response;
+    return webClient.get().uri(urlSuffix)
+        .exchangeToMono(clientResponse -> {
+          if (clientResponse.statusCode().is2xxSuccessful()) {
+            return clientResponse.bodyToMono(String.class);
+          } else {
+            return clientResponse.createException().flatMap(Mono::error);
+          }
+        });
   }
 }

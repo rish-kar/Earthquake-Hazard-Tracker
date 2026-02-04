@@ -4,7 +4,7 @@ import reactor.core.publisher.*;
 
 public interface ExternalServiceCaller {
 
-  Mono<String> getGeoJsonSummary();
-  Mono<String> getGeoJsonData();
+  Mono<String> getSummary(String urlSuffix);
+  Mono<String> getDetails(String urlSuffix);
 
 }
