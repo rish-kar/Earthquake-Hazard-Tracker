@@ -1,3 +1,10 @@
 spring:
   application:
     name: earthquake.hazard.tracker
+  main:
+    web-application-type: servlet
+  codec:
+    max-in-memory-size: 10MB
+
+server:
+  port: 8082

@@ -8,7 +8,6 @@ import lombok.extern.slf4j.*;
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class RequestParametersDTO {
 
   String format;
