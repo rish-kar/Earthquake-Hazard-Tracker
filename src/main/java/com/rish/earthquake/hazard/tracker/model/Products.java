@@ -8,14 +8,14 @@ import java.util.*;
 @Slf4j
 public class Products {
 
-  // Map of product type to list of Product objects
+  // Map of product type -> list of product objects
+  // We use @JsonAnySetter to capture dynamic keys representing product types
   @JsonAnySetter
-  Map<String, List<Product>> products = new HashMap<>();
+  Map<String, List<Product>> productsByType = new HashMap<>();
 
   @JsonAnyGetter
-  public Map<String, List<Product>> getProducts() {
-    return products;
+  public Map<String, List<Product>> getProductsByType() {
+    return productsByType;
   }
 
 }
-
